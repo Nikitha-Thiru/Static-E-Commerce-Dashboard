@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Tracking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #181818; 
+      padding: 20px;
+      color: white; 
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #666;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Track Your Order</h2>
+    <form id="trackOrderForm">
+      <label for="emailOrPhone">Enter Your Email or Phone Number:</label>
+      <input type="text" id="emailOrPhone" name="emailOrPhone" placeholder="Email or Phone Number" required>
+
+      <button type="submit">Track Order</button>
+    </form>
+
+    <div id="trackingResult" style="display:none; margin-top: 20px;">
+      <h3>Order Tracking Information</h3>
+      <p id="orderDetails"></p>
+    </div>
+
+  </div>
+
+  <script>
+    
+      document.getElementById('trackOrderForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const emailOrPhone = document.getElementById('emailOrPhone').value.trim();
+      
+      if (emailOrPhone === "") {
+        alert("Please enter your email or phone number.");
+        return;
+      }
+      
+      const orderDetails = simulateTracking(emailOrPhone);
+      
+      if (orderDetails) {
+          document.getElementById('trackingResult').style.display = 'block';
+          document.getElementById('orderDetails').innerHTML = `
+          <strong>Order Number:</strong> ${orderDetails.orderNumber}<br>
+          <strong>Status:</strong> ${orderDetails.status}<br>
+          <strong>Estimated Delivery:</strong> ${orderDetails.deliveryDate}<br>
+          <strong>Tracking Link:</strong> <a href="${orderDetails.trackingLink}" target="_blank">Track Here</a>
+        `;
+      } else {
+        alert("No order found with the provided email or phone number.");
+      }
+    });
+
+    function simulateTracking(emailOrPhone) {
+      const exampleOrders = {
+        "user@example.com": {
+          orderNumber: "12345",
+          status: "Shipped",
+          deliveryDate: "2025-01-18",
+          trackingLink: "https://www.carrier.com/track/12345"
+        },
+        "555-1234": {
+          orderNumber: "67890",
+          status: "Out for Delivery",
+          deliveryDate: "2025-01-15",
+          trackingLink: "https://www.carrier.com/track/67890"
+        }
+      };
+
+      return exampleOrders[emailOrPhone] || null;
+    }
+  </script>
+
+</body>
+</html>

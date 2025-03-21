@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Dashboard - Customer Analytics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #181818;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .widget {
+            background-color: #181818;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .widget h3 {
+            margin-top: 0;
+        }
+
+        .widget i {
+            font-size: 40px;
+            color: #3498db;
+        }
+
+        .widget button {
+            margin-top: 15px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .widget button:hover {
+            background-color: #2980b9;
+        }
+
+    </style>
+</head>
+<body>
+        <!-- Customer Analytics Widget -->
+        <div class="widget" id="customer-analytics-widget">
+            <font color="Phthalo blue"><centre><h1><p>Customer Analytics</centre></h1></p></font>
+            <h2><p>  </p></h2>
+            <div class="stats">
+            <h3>
+                <font color="Fuzzy Wuzzy"><p><strong>Total Customers:</strong></font> <font color="White">8,234</font></p>
+                <font color="Fuzzy Wuzzy"><p><strong>Repeat Customers:</strong></font> <font color="White">62%</font></p>
+                <font color="Fuzzy Wuzzy"><p><strong>New Signups:</strong></font> <font color="White">1,045 in the last 30 days</font></p>
+                <font color="Fuzzy Wuzzy"><p><strong>Average Order Value:</strong></font> <font color="White">$56.75</font></p>
+            </div>
+            <h2><button onclick="window.open('CA2.html', '_blank')">View Detailed Report</button></h2>
+            <button onclick="window.open('CA.html', '_blank')">View Customer Analytics in Pie Graph</button>
+            </h3>
+        </div>
+
+    </div>
+
+</body>
+</html>

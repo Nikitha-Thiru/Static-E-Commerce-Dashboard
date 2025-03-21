@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce Dashboard - Automated Reporting</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #181818;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .report-section {
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 8px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Automated Reporting</h2>
+
+    <!-- Sales Report Section -->
+    <div class="report-section" id="sales-report">
+      <h3>Sales Report</h3>
+      <button onclick="toggleSalesReport()">Generate Report</button>
+      <div id="sales-report-table" style="display:none; margin-top: 20px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Total Sales</th>
+              <th>Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Sales data rows will be populated here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Customer Activity Report Section -->
+    <div class="report-section" id="customer-activity-report">
+      <h3>Customer Activity Report</h3>
+      <button onclick="toggleCustomerActivityReport()">Generate Report</button>
+      <div id="customer-activity-table" style="display:none; margin-top: 20px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Customer Name</th>
+              <th>Orders Placed</th>
+              <th>Total Spend</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Customer activity data rows will be populated here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Product Performance Report Section -->
+    <div class="report-section" id="product-performance-report">
+      <h3>Product Performance Report</h3>
+      <button onclick="toggleProductPerformanceReport()">Generate Report</button>
+      <div id="product-performance-table" style="display:none; margin-top: 20px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Units Sold</th>
+              <th>Performance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Product performance data rows will be populated here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Simulated Sales Data for the Sales Report
+    function toggleSalesReport() {
+      const reportTable = document.getElementById("sales-report-table");
+      if (reportTable.style.display === "none") {
+        const salesData = [
+          { product: 'Accessories', totalSales: 120, revenue: '$30,000' },
+          { product: 'Shoes', totalSales: 250, revenue: '$125,000' },
+          { product: 'Outfits', totalSales: 300, revenue: '$240,000' },
+          { product: 'Furniture', totalSales: 150, revenue: '$60,000' }
+        ];
+        
+        const tableBody = document.querySelector("#sales-report-table tbody");
+        tableBody.innerHTML = "";  // Clear previous data
+
+        salesData.forEach(item => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${item.product}</td>
+            <td>${item.totalSales}</td>
+            <td>${item.revenue}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+        
+        // Toggle visibility
+        reportTable.style.display = "block";
+      } else {
+        reportTable.style.display = "none";
+      }
+    }
+
+    // Simulated Customer Activity Data for the Customer Activity Report
+    function toggleCustomerActivityReport() {
+      const reportTable = document.getElementById("customer-activity-table");
+      if (reportTable.style.display === "none") {
+        const customerData = [
+          { customerName: 'John Doe', ordersPlaced: 15, totalSpend: '$5,000' },
+          { customerName: 'Jane Smith', ordersPlaced: 8, totalSpend: '$2,500' },
+          { customerName: 'Sam Johnson', ordersPlaced: 20, totalSpend: '$6,500' },
+          { customerName: 'Alice Brown', ordersPlaced: 10, totalSpend: '$3,000' }
+        ];
+
+        const tableBody = document.querySelector("#customer-activity-table tbody");
+        tableBody.innerHTML = "";  // Clear previous data
+
+        customerData.forEach(item => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${item.customerName}</td>
+            <td>${item.ordersPlaced}</td>
+            <td>${item.totalSpend}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+        
+        // Toggle visibility
+        reportTable.style.display = "block";
+      } else {
+        reportTable.style.display = "none";
+      }
+    }
+
+    // Simulated Product Performance Data for the Product Performance Report
+    function toggleProductPerformanceReport() {
+      const reportTable = document.getElementById("product-performance-table");
+      if (reportTable.style.display === "none") {
+        const productData = [
+          { product: 'Accessories', unitsSold: 120, performance: 'High return rate' },
+          { product: 'Shoes', unitsSold: 250, performance: 'High' },
+          { product: 'Outfits', unitsSold: 300, performance: 'High' },
+          { product: 'Furniture', unitsSold: 150, performance: 'Low' }
+        ];
+
+        const tableBody = document.querySelector("#product-performance-table tbody");
+        tableBody.innerHTML = "";  // Clear previous data
+
+        productData.forEach(item => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${item.product}</td>
+            <td>${item.unitsSold}</td>
+            <td>${item.performance}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+
+        // Toggle visibility
+        reportTable.style.display = "block";
+      } else {
+        reportTable.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+</html>

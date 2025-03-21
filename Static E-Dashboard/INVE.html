@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #181818;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .widget {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .widget h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.25rem;
+            color: black;
+        }
+
+        .widget p {
+            font-size: 1rem;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .widget .highlight {
+            font-weight: bold;
+            color: #f39c12;
+        }
+
+        .widget .status {
+            color: #e74c3c;
+        }
+
+        .widget .button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        .widget .status-good {
+            color: #2ecc71;
+        }
+
+        .widget .status-warning {
+            color: #f39c12;
+        }
+
+        .widget .status-bad {
+            color: #e74c3c;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <!-- Inventory Overview -->
+        <div class="widget">
+            <h3>Inventory Overview</h3>
+            <p><strong>Current Stock Levels:</strong> 120 items</p>
+            <p><strong>Low Stock Alerts:</strong> 3 items need restocking</p>
+            <p><strong>Out of Stock Products:</strong> 1 product</p>
+            <p><strong>Restocking Alerts:</strong> Restock 5 items in next 2 days</p>
+        </div>
+        
+        <!-- Product Management -->
+        <div class="widget">
+            <h3>Product Management</h3>
+            <div class="metrics-grid">
+                <p><strong>Product List:</strong> 35 products</p>
+                <p><strong>Variants:</strong> 10 products with variants</p>
+                <p><strong>Search/Filter:</strong> Filters by name, category, and stock</p>
+            </div>
+        </div>
+
+        <!-- Sales & Performance -->
+        <div class="widget">
+            <h3>Sales & Performance Metrics</h3>
+            <p><strong>Sales Volume:</strong> 500 units sold this month</p>
+            <p><strong>Sales Revenue:</strong> $12,500</p>
+            <p><strong>Inventory Turnover Rate:</strong> 60%</p>
+            <p><strong>Stock Value:</strong> $8,000</p>
+        </div>
+
+        <!-- Order Management -->
+        <div class="widget">
+            <h3>Order Management</h3>
+            <p><strong>Pending Orders:</strong> 10 orders to fulfill</p>
+            <p><strong>Shipped Orders:</strong> 50 orders shipped</p>
+            <p><strong>Returns & Exchanges:</strong> 2 returns</p>
+        </div>
+
+        <!-- Supplier Management -->
+        <div class="widget">
+            <h3>Supplier Management</h3>
+            <p><strong>Suppliers:</strong> 5 active suppliers</p>
+            <p><strong>Purchase Orders:</strong> 3 pending orders</p>
+            <p><strong>Lead Times:</strong> Average of 7 days</p>
+        </div>
+
+        <!-- Inventory Trends & Forecasting -->
+        <div class="widget">
+            <h3>Inventory Trends & Forecasting</h3>
+            <p><strong>Inventory Forecasting:</strong> 150 units required in the next month</p>
+            <p><strong>Stock History:</strong> Stock level graph</p>
+            <p><strong>Demand Trends:</strong> 20% increase expected next quarter</p>
+        </div>
+
+        <!-- Warehouse Management -->
+        <div class="widget">
+            <h3>Warehouse Management</h3>
+            <p><strong>Stock Tracking:</strong> 2 warehouses</p>
+            <p><strong>Picking & Packing:</strong> 20 orders being fulfilled</p>
+            <p><strong>Barcode Scanning:</strong> Enabled for quick updates</p>
+        </div>
+
+        <!-- Reports & Analytics -->
+        <div class="widget">
+            <h3>Reports & Analytics</h3>
+            <p><strong>Inventory Health Report:</strong> 80% healthy stock</p>
+            <p><strong>Profit Margins:</strong> 25%</p>
+            <p><strong>Stock Aging:</strong> 10 slow-moving items</p>
+        </div>
+
+        <!-- Integrations & Automation -->
+        <div class="widget">
+            <h3>Integrations & Automation</h3>
+            <p><strong>Third-Party Integrations:</strong> Shopify, WooCommerce</p>
+            <p><strong>Replenishment Automation:</strong> Set to auto-replenish when stock hits 20%</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

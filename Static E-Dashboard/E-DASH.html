@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #181818; 
+            color: white; 
+        }
+
+        header {
+            background-color: #181818; 
+            color: white; 
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .widget {
+            background-color: white;
+            color: #181818; 
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            cursor: move; 
+        }
+
+        .widget h3 {
+            margin-top: 0;
+        }
+
+        .widget i {
+            font-size: 40px;
+            color: #3498db;
+        }
+
+        .widget button {
+            margin-top: 15px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .widget button:hover {
+            background-color: #2980b9;
+        }
+
+        .role-bar {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+        }
+
+        .role-bar span {
+            margin: 0 10px;
+        }
+
+        .widget.hidden {
+            display: none;
+        }
+
+        .alert-box {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            padding: 10px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: none;
+            width: 300px;
+            z-index: 1000;
+        }
+
+        .alert-box .close-btn {
+            cursor: pointer;
+            color: #721c24;
+            font-size: 20px;
+            float: right;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #343a40;
+            color: white;
+            padding: 0.5px;
+            position: fixed;
+            bottom: 0;
+            width: 110%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <center><h1>SHOPSY E-commerce Management Dashboard</h1></center>
+    </header>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="#" onclick="redirectToHomePage()">Home</a>
+        <a href="#" onclick="logout()">Logout</a>
+    </div>
+
+    <!-- Role Bar -->
+    <div class="role-bar">
+        <span>Role: <strong>Manager</strong></span>
+        <span>Access Level: <strong>Full</strong></span>
+    </div>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container" id="dashboardContainer">
+        <!-- Sales Tracking Widget -->
+        <div class="widget" id="sales-widget" draggable="true" ondragstart="dragStart(event)" ondragover="allowDrop(event)" ondrop="drop(event)">
+            <h3><i class="fas fa-chart-line"></i> Sales Tracking</h3>
+            <p>Track your daily sales performance and trends on Shopsy.</p>
+            <button onclick="window.open('ST.html', '_blank')">View Sales Analytics</button>
+        </div>
+
+        <!-- Inventory Management Widget -->
+        <div class="widget" id="inventory-widget" draggable="true" ondragstart="dragStart(event)" ondragover="allowDrop(event)" ondrop="drop(event)">
+            <h3><i class="fas fa-cogs"></i> Inventory Management</h3>
+            <p>Monitor stock levels and reorder products from your Shopsy seller account.</p>
+            <button onclick="window.open('INVE.html', '_blank')">View Inventory</button>
+        </div>
+
+        <!-- Customer Analytics Widget -->
+        <div class="widget" id="customer-widget" draggable="true" ondragstart="dragStart(event)" ondragover="allowDrop(event)" ondrop="drop(event)">
+            <h3><i class="fas fa-users"></i> Customer Analytics</h3>
+            <p>Analyze customer behavior and preferences based on your Shopsy sales data.</p>
+            <button onclick="window.open('CA1.html', '_blank')">View Customer Analytics</button>
+        </div>
+
+        <!-- Customer Engagement Widget -->
+        <div class="widget" id="customer-engagement-widget" draggable="true" ondragstart="dragStart(event)" ondragover="allowDrop(event)" ondrop="drop(event)">
+            <h3><i class="fas fa-users"></i> Customer Engagement</h3>
+            <p>Analyze customer behavior and preferences based on your Shopsy sales data.</p>
+            <button onclick="window.open('CE1.html', '_blank')">View Customer Engagement</button>
+        </div>
+
+        <!-- Marketing Campaigns Widget -->
+        <div class="widget" id="marketing-widget" draggable="true" ondragstart="dragStart(event)" ondragover="allowDrop(event)" ondrop="drop(event)">
+            <h3><i class="fas fa-bullhorn"></i> Marketing Campaigns</h3>
+            <p>View and manage your Shopsy advertising campaigns.</p>
+            <button onclick="window.open('MACA.html', '_blank')">View Campaigns</button>
+        </div>
+
+        <!-- Order Tracking Widget -->
+        <div class="widget" id="order-widget" draggable="true" ondragstart="dragStart(event)" ondragover="allowDrop(event)" ondrop="drop(event)">
+            <h3><i class="fas fa-box"></i> Order Tracking</h3>
+            <p>Track and manage customer orders on Shopsy.</p>
+            <button onclick="window.open('OT.html', '_blank')">View Orders</button>
+        </div>
+
+        <!-- Automated Reporting Widget -->
+        <div class="widget" id="automatedreporting-widget" draggable="true" ondragstart="dragStart(event)" ondragover="allowDrop(event)" ondrop="drop(event)">
+            <h3><i class="fas fa-box"></i> Automated Reporting</h3>
+            <p>Track and manage customer orders on Shopsy.</p>
+            <button onclick="window.open('AR.html', '_blank')">View Automated Reporting</button>
+        </div>
+    </div>
+
+    <!-- Floating Alert Box -->
+    <div class="alert-box" id="alertBox">
+        <span class="close-btn" onclick="closeAlert()"> × </span>
+        <p>Low stock alert on Outfit!</p>
+        <p>High return rate on Accessories!</p>
+        <p>Under performing product: Furniture!</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 SHOPSY. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        let draggedElement = null;
+
+        // Function to allow drop
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        // Function when dragging starts, saving the dragged element
+        function dragStart(event) {
+            draggedElement = event.target;
+        }
+
+        // Function to swap widgets when dropped
+        function drop(event) {
+            event.preventDefault();
+            let target = event.target;
+
+            // Only swap if target is a widget and it's not the same as the dragged element
+            if (target.classList.contains('widget') && target !== draggedElement) {
+                let parent = target.parentNode;
+
+                // Swap the dragged element with the target
+                parent.insertBefore(draggedElement, target);
+            }
+        }
+
+        // Redirect to the Home Page of the E-Commerce Website
+        function redirectToHomePage() {
+            window.location.href = "https://shopsy.in";
+        }
+
+        // Function to log out
+        function logout() {
+            alert('Logging out...');
+            // Redirect to login page or handle session logout
+            window.location.href = 'login.html'; 
+        }
+
+        // Close the alert box
+        function closeAlert() {
+            document.getElementById('alertBox').style.display = 'none';
+        }
+
+        // Show the alert box after page load (for demonstration purposes)
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById('alertBox').style.display = 'block';
+            }, 1000);         };
+
+    </script>
+
+</body>
+</html>

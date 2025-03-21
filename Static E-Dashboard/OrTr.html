@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #181818;
+            margin: 0;
+            padding: 20px;
+        }
+        .email-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .email-header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        .email-header h1 {
+            color: #333333;
+        }
+        .order-details {
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        .order-details p {
+            margin: 5px 0;
+        }
+        .tracking-info {
+            padding: 10px;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin-top: 30px;
+        }
+        .form-container {
+            margin-top: 20px;
+        }
+        .form-container input,
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>Order Tracking Information</h1>
+        </div>
+
+        <div class="form-container">
+            <h3>Enter Order Details</h3>
+            <form id="orderForm">
+                <label for="customerName">Customer Name</label>
+                <input type="text" id="customerName" required>
+
+                <label for="orderNumber">Order Number</label>
+                <input type="text" id="orderNumber" required>
+
+                <label for="orderDate">Order Date</label>
+                <input type="date" id="orderDate" required>
+
+                <label for="trackingNumber">Tracking Number</label>
+                <input type="text" id="trackingNumber" required>
+
+                <label for="carrierName">Carrier Name</label>
+                <input type="text" id="carrierName" required>
+
+                <label for="orderStatus">Order Status</label>
+                <input type="text" id="orderStatus" required>
+
+                <label for="estimatedDeliveryDate">Estimated Delivery Date</label>
+                <input type="date" id="estimatedDeliveryDate" required>
+
+                <label for="recipientEmail">Recipient Email</label>
+                <input type="email" id="recipientEmail" required>
+
+                <button type="button" class="button" onclick="sendEmail()">Send Email</button>
+            </form>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 [Your Company Name]. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        function sendEmail() {
+            const customerName = document.getElementById('customerName').value;
+            const orderNumber = document.getElementById('orderNumber').value;
+            const orderDate = document.getElementById('orderDate').value;
+            const trackingNumber = document.getElementById('trackingNumber').value;
+            const carrierName = document.getElementById('carrierName').value;
+            const orderStatus = document.getElementById('orderStatus').value;
+            const estimatedDeliveryDate = document.getElementById('estimatedDeliveryDate').value;
+            const recipientEmail = document.getElementById('recipientEmail').value;
+
+            const emailContent = `
+                <p>Dear ${customerName},</p>
+                <p>Thank you for your order! We're excited to let you know that your order is on its way. Here are the details:</p>
+                <p><strong>Order Number:</strong> ${orderNumber}</p>
+                <p><strong>Order Date:</strong> ${orderDate}</p>
+                <div style="background-color: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin-top: 20px;">
+                    <p><strong>Tracking Number:</strong> ${trackingNumber}</p>
+                    <p><strong>Carrier:</strong> ${carrierName}</p>
+                    <p><strong>Status:</strong> ${orderStatus}</p>
+                    <p><strong>Estimated Delivery Date:</strong> ${estimatedDeliveryDate}</p>
+                </div>
+                <p>Best regards,</p>
+                <p>[Your Company Name]</p>
+            `;
+
+            const emailData = {
+                to: recipientEmail,
+                subject: 'Your Order Tracking Information',
+                body: emailContent,
+                from: 'nikkiudhai10@gmail.com'  // Fixed sender email
+            };
+
+            // Send the email via an API or backend service
+            fetch('/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(emailData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Email sent successfully!');
+                } else {
+                    alert('Failed to send email. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error sending email:', error);
+                alert('There was an error sending the email.');
+            });
+        }
+        const express = require('express');
+const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
+const cors = require('cors');  // Allow cross-origin requests (if needed)
+
+const app = express();
+const port = 3000;
+
+// Middleware
+app.use(cors());  // Enable CORS if your frontend and backend are on different servers
+app.use(bodyParser.json());
+
+// Create a nodemailer transport
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'nikkiudhai10@gmail.com',  // Replace with your email address
+        pass: 'your-email-password',     // Replace with your email password or app password
+    },
+});
+
+// Handle sending email
+app.post('/send-email', (req, res) => {
+    const { to, subject, body, from } = req.body;
+
+    const mailOptions = {
+        from: from,  // Sender email
+        to: to,      // Recipient email
+        subject: subject,
+        html: body,  // HTML content for the email
+    };
+
+    // Send the email
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Error sending email:', error);
+            return res.status(500).json({ success: false, message: 'Failed to send email.' });
+        }
+        console.log('Email sent: ' + info.response);
+        return res.status(200).json({ success: true, message: 'Email sent successfully.' });
+    });
+});
+
+// Start the server
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+});
+
+    </script>
+</body>
+</html>
